@@ -23,12 +23,16 @@ Sitio estático (un solo `index.html` + la carpeta `img/`), listo para GitHub Pa
 ## Qué editar
 
 - WhatsApp: `593984775507` (aparece en varios enlaces `wa.me/…`) y el texto `098 477 5507`.
-- Correo: `david_alext02@hotmail.com`.
+- Correo: `davidalext96@gmail.com`.
 - Precio: «desde $80» aparece en la portada y en la tarjeta de Página web informativa.
 - Foto: reemplaza `img/david-taday.jpg` (vertical, unos 760 × 1145 px).
 
-## Pestañas
+- Planes: las tres tarjetas están en la sección `id="planes"`; la nota «Emito nota de venta, sin IVA adicional» está justo debajo.
+- Preguntas frecuentes: cada pregunta es un bloque `<details><summary>Pregunta</summary><p>Respuesta</p></details>`.
 
-La página se ve por pestañas: Inicio, Servicios, Cómo trabajamos, Fundador y Contacto (en celular, en el botón «Menú»).
-Cada pestaña tiene su propia dirección (`…/#servicios`, `…/#contacto`), así que se puede compartir directo, por ejemplo
-el enlace a Contacto. Para agregar una pestaña: crea otra `<section id="nombre">` dentro de `<main>` y su enlace en `<nav class="pestanas">`.
+## Diseño (versión 2, noviembre 2026)
+
+Página de una sola columna que se recorre bajando (estilo landing, fondo azul noche, botones con degradado azul, tipografía DM Sans).
+Orden: Inicio › cifras › Por qué importa › Qué incluye (`#servicios`) › Cómo trabajamos (`#proceso`) › Fundador (`#fundador`) ›
+Planes (`#planes`) › Preguntas (`#preguntas`) › Contacto (`#contacto`). El menú de arriba lleva a cada sección; en celular se abre con el botón ☰.
+Hay un botón flotante de WhatsApp abajo a la derecha. Cada sección se puede compartir directo, por ejemplo `…/#planes`.
