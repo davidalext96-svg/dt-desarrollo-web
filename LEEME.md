@@ -32,7 +32,15 @@ Sitio estático (un solo `index.html` + la carpeta `img/`), listo para GitHub Pa
 
 ## Diseño (versión 2, noviembre 2026)
 
-Página de una sola columna que se recorre bajando (estilo landing, fondo azul noche, botones con degradado azul, tipografía DM Sans).
-Orden: Inicio › cifras › Por qué importa › Qué incluye (`#servicios`) › Cómo trabajamos (`#proceso`) › Fundador (`#fundador`) ›
-Planes (`#planes`) › Preguntas (`#preguntas`) › Contacto (`#contacto`). El menú de arriba lleva a cada sección; en celular se abre con el botón ☰.
-Hay un botón flotante de WhatsApp abajo a la derecha. Cada sección se puede compartir directo, por ejemplo `…/#planes`.
+Fondo azul noche, botones con degradado azul, tipografía DM Sans y botón flotante de WhatsApp.
+La página se ve **por pestañas**, una sección a la vez: Inicio (portada, cifras y «Por qué importa») · Servicios · Planes ·
+Cómo trabajamos · Fundador · Preguntas · Contacto. Cada pestaña tiene su dirección (`…/#planes`, `…/#contacto`) y termina con «Siguiente: …».
+En celular, el menú se abre con el botón ☰. Sin JavaScript se ve todo seguido.
+
+## Planes y precios (en la pestaña Planes)
+
+| Plan | Desde | Renovación anual | Otros |
+|---|---|---|---|
+| Página web informativa | $80 | $35 | Lanzamiento $15 (solo la primera vez) |
+| Página web con administración (más popular) | $250 | $80 | Informativa + formularios para contratar servicios, reportes y fotos del equipo con IA |
+| Sistema de administración en línea | $700 | $200 | Incluye fotos del equipo con IA |

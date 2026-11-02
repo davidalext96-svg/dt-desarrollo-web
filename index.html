@@ -22,7 +22,7 @@
   --ui:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
+html{scroll-padding-top:80px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{margin:0;font-family:var(--ui);color:var(--texto);background:var(--noche);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 main{overflow-x:clip}
@@ -76,8 +76,10 @@ p{margin:0}
 .portada h1 em{font-style:normal;background:linear-gradient(90deg,#7FA2FF,#B9CCFF);-webkit-background-clip:text;background-clip:text;color:transparent}
 .portada .bajada{margin-top:1.3rem;font-size:1.13rem;color:var(--gris);max-width:34em}
 .acciones{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
-.desde{margin-top:1.8rem;display:inline-flex;align-items:center;gap:.9rem;padding:.7rem 1.2rem .7rem 1.1rem;border-radius:14px;border:1px solid rgba(61,220,132,.35);background:rgba(61,220,132,.08);color:var(--texto);font-size:1rem;font-weight:500;line-height:1.3}
-.desde b{color:var(--verde-cl);font-size:2.6rem;font-weight:700;letter-spacing:-.03em;line-height:1;text-shadow:0 0 30px rgba(61,220,132,.4)}
+.lado{display:flex;flex-direction:column;align-items:flex-start;gap:1.4rem}
+.lado .escena{width:100%}
+.desde{margin:0;display:inline-flex;align-items:center;gap:1.2rem;padding:1rem 1.7rem 1rem 1.4rem;border-radius:18px;border:1.5px solid rgba(61,220,132,.45);background:linear-gradient(135deg,rgba(61,220,132,.14),rgba(61,220,132,.04));box-shadow:0 20px 50px -24px rgba(61,220,132,.55);color:var(--texto);font-size:1.15rem;font-weight:500;line-height:1.3}
+.desde b{color:var(--verde-cl);font-size:4rem;font-weight:700;letter-spacing:-.03em;line-height:1;text-shadow:0 0 30px rgba(61,220,132,.4)}
 
 /* ilustración: página web + panel de administración */
 .escena{position:relative;min-height:440px}
@@ -108,7 +110,7 @@ p{margin:0}
 .stock output.cambio{animation:destello 1.2s ease}
 @keyframes destello{0%{color:#FFD86B}100%{color:#fff}}
 @media (max-width:900px){.portada .env{grid-template-columns:1fr}.escena{min-height:380px}}
-@media (max-width:480px){.portada{padding:3.2rem 0 3.5rem}.escena{min-height:330px}.navegador{inset:0 0 18% 0}.panel-adm{width:84%}.sitio-fila div{height:44px}}
+@media (max-width:480px){.desde{font-size:1rem;padding:.85rem 1.2rem}.desde b{font-size:3.1rem}.portada{padding:3.2rem 0 3.5rem}.escena{min-height:330px}.navegador{inset:0 0 18% 0}.panel-adm{width:84%}.sitio-fila div{height:44px}}
 
 /* franja de confianza */
 .franja{padding:0 0 1rem}
@@ -200,6 +202,10 @@ p{margin:0}
 .plan .monto{font-size:2.8rem;font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.03em}
 .plan .monto.verde{color:var(--verde-cl);text-shadow:0 0 28px rgba(61,220,132,.35)}
 .plan .monto.txt{font-size:1.65rem;line-height:1.2;padding:.35rem 0}
+.plan .costos{margin-top:.7rem;display:flex;flex-direction:column;gap:.15rem;font-size:.9rem;color:var(--gris)}
+.plan .costos b{color:#fff;font-weight:700}
+.plan .costos small{font-size:.8rem}
+.plan li.mas{color:#fff}
 .plan .que{margin-top:.6rem;color:var(--gris);font-size:.96rem}
 .plan ul{list-style:none;margin:1.4rem 0 0;padding:1.4rem 0 0;border-top:1px solid var(--borde);display:grid;gap:.6rem;font-size:.96rem}
 .plan li{display:flex;gap:.6rem;align-items:flex-start}
@@ -226,8 +232,8 @@ p{margin:0}
 .cierre h2{font-size:clamp(1.9rem,3.4vw,2.6rem)}
 .cierre .titulo-sec p{color:#D6E1FF}
 .cierre .acciones{margin-top:1.8rem}
-.btn-blanco{background:#fff;color:#0E2C7A}
-.btn-blanco:hover{transform:translateY(-2px)}
+.btn-wa{background:var(--verde);color:#fff;box-shadow:0 12px 28px -12px rgba(0,0,0,.6)}
+.btn-wa:hover{background:var(--verde-osc);transform:translateY(-2px)}
 .btn-borde{border-color:rgba(255,255,255,.45);color:#fff}
 .btn-borde:hover{border-color:#fff;background:rgba(255,255,255,.08)}
 .datos{position:relative;z-index:1;list-style:none;margin:0;padding:0;display:grid;gap:.8rem}
@@ -244,6 +250,18 @@ p{margin:0}
 .pie nav{display:flex;flex-wrap:wrap;gap:1.1rem}
 .pie nav a{text-decoration:none}.pie nav a:hover{color:#fff}
 
+/* pestañas: con JavaScript se ve una sección a la vez; sin él, toda la página seguida */
+main{min-height:calc(100vh - 150px)}
+.js-pestanas main > section{display:none}
+.js-pestanas main > section.activa{display:block;animation:entra .3s ease}
+@keyframes entra{from{opacity:0}to{opacity:1}}
+.js-pestanas .cierre{padding-top:5rem}
+.menu a[aria-current="page"]{color:#fff;background:rgba(43,89,232,.28)}
+.siguiente{margin-top:3rem;display:flex;justify-content:flex-end}
+.siguiente a{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;text-decoration:none;color:#8EA9FF;padding:.6rem .2rem}
+.siguiente a:hover{color:#fff}
+.franja.activa + .importa{padding-top:5rem}
+
 /* botón flotante de WhatsApp */
 .wa-flota{position:fixed;right:20px;bottom:20px;z-index:40;width:58px;height:58px;border-radius:50%;background:var(--verde);display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(31,184,102,.7);transition:transform .15s,background .15s}
 .wa-flota:hover{transform:scale(1.06);background:var(--verde-osc)}
@@ -259,7 +277,7 @@ p{margin:0}
   <div class="env">
     <a class="marca" href="#inicio" aria-label="DT Desarrollo Web, inicio"><span class="marca-dt" aria-hidden="true">DT</span><b>DT Desarrollo Web</b></a>
     <nav class="menu" id="menu" aria-label="Secciones">
-      <a href="#servicios">Servicios</a><a href="#planes">Planes</a><a href="#proceso">Cómo trabajamos</a><a href="#fundador">Fundador</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a>
+      <a href="#inicio">Inicio</a><a href="#servicios">Servicios</a><a href="#planes">Planes</a><a href="#proceso">Cómo trabajamos</a><a href="#fundador">Fundador</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a>
     </nav>
     <a class="btn btn-pri" href="https://wa.me/593984775507?text=Hola%20David%2C%20quiero%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span>Cotizar</span></a>
@@ -279,9 +297,10 @@ p{margin:0}
         <a class="btn btn-pri" href="https://wa.me/593984775507?text=Hola%20David%2C%20quiero%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Cotizar por WhatsApp <span class="flecha" aria-hidden="true">→</span></a>
         <a class="btn btn-sec" href="#planes">Ver los planes</a>
       </div>
-      <p class="desde"><span>Páginas informativas<br>desde</span><b>$80</b></p>
     </div>
 
+    <div class="lado">
+    <p class="desde"><span>Páginas web informativas<br>desde</span><b>$80</b></p>
     <div class="escena" aria-hidden="true">
       <div class="navegador">
         <div class="nav-barra"><i></i><i></i><i></i><span class="nav-url"><b>https://</b>tunegocio.com</span></div>
@@ -297,10 +316,11 @@ p{margin:0}
         <div class="stock"><span>Stock del producto vendido</span><output id="stock">3</output></div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
-<section class="franja" aria-label="Lo esencial">
+<section class="franja" data-pestana="inicio" aria-label="Lo esencial">
   <div class="env">
     <p class="franja-frase">Para pequeños negocios, profesionales y emprendimientos de todo el Ecuador.</p>
     <div class="cifras aparece">
@@ -318,7 +338,7 @@ p{margin:0}
   </div>
 </section>
 
-<section class="seccion importa" aria-labelledby="t-importa">
+<section class="seccion importa" data-pestana="inicio" aria-labelledby="t-importa">
   <div class="env">
     <div class="titulo-sec aparece">
       <span class="ceja">Por qué importa</span>
@@ -421,26 +441,40 @@ p{margin:0}
     <div class="titulo-sec centro aparece">
       <span class="ceja">Planes</span>
       <h2 id="t-planes">Elige lo que va con tu negocio</h2>
-      <p>Precio por proyecto, una sola vez. La cotización detalla todo por escrito antes de empezar.</p>
+      <p>Un pago inicial por el desarrollo y una renovación anual que mantiene tu página en línea. La cotización detalla todo por escrito.</p>
     </div>
     <div class="planes">
       <article class="plan aparece">
         <h3>Página web informativa</h3>
         <p class="pre">DESDE</p><p class="monto verde">$80</p>
+        <p class="costos"><span>Lanzamiento: <b>$15</b> <small>(solo la primera vez)</small></span><span>Renovación anual: <b>$35</b></span></p>
         <p class="que">Para presentarte con seriedad en internet.</p>
         <ul>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Diseño adaptable a celular, tablet y computadora</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Servicios, galería, ubicación y contacto</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Botón de WhatsApp, mapa y redes sociales</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Optimización básica para Google</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Publicación en la nube con HTTPS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Dominio y hosting con HTTPS incluidos</li>
         </ul>
         <a class="btn btn-sec" href="https://wa.me/593984775507?text=Hola%20David%2C%20quiero%20una%20p%C3%A1gina%20web%20informativa" target="_blank" rel="noopener">Solicitar</a>
       </article>
       <article class="plan plan-dest aparece">
-        <span class="plan-sello">MÁS COMPLETO</span>
+        <span class="plan-sello">MÁS POPULAR</span>
+        <h3>Página web con administración</h3>
+        <p class="pre">DESDE</p><p class="monto verde">$250</p>
+        <p class="costos"><span>Renovación anual: <b>$80</b></span></p>
+        <p class="que">Todo lo de la página web informativa, más:</p>
+        <ul>
+          <li class="mas"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3DDC84" stroke-width="2.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Módulo de administración: formularios para que tus clientes contraten tus servicios</li>
+          <li class="mas"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3DDC84" stroke-width="2.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Reportes de solicitudes y clientes</li>
+          <li class="mas"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3DDC84" stroke-width="2.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Sección de fotos del CEO y colaboradores creadas con IA</li>
+        </ul>
+        <a class="btn btn-pri" href="https://wa.me/593984775507?text=Hola%20David%2C%20quiero%20una%20p%C3%A1gina%20web%20con%20administraci%C3%B3n" target="_blank" rel="noopener">Solicitar</a>
+      </article>
+      <article class="plan aparece">
         <h3>Sistema de administración en línea</h3>
-        <p class="pre">PRECIO</p><p class="monto txt">Según tu proyecto</p>
+        <p class="pre">DESDE</p><p class="monto verde">$700</p>
+        <p class="costos"><span>Renovación anual: <b>$200</b></span></p>
         <p class="que">Una plataforma web hecha a la medida de tu negocio.</p>
         <ul>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Catálogo en línea con pedidos por WhatsApp</li>
@@ -449,23 +483,12 @@ p{margin:0}
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Reportes y tablero en PDF y Excel</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Carga masiva de productos desde Excel</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Acceso seguro y respaldos automáticos</li>
+          <li class="mas"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3DDC84" stroke-width="2.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Sección de fotos del CEO y colaboradores creadas con IA</li>
         </ul>
-        <a class="btn btn-pri" href="https://wa.me/593984775507?text=Hola%20David%2C%20quiero%20cotizar%20un%20sistema%20de%20administraci%C3%B3n%20en%20l%C3%ADnea" target="_blank" rel="noopener">Cotizar un sistema</a>
-      </article>
-      <article class="plan aparece">
-        <h3>Soporte y mejoras</h3>
-        <p class="pre">PRECIO</p><p class="monto txt">Según lo que necesites</p>
-        <p class="que">Para que tu sitio crezca junto con tu negocio.</p>
-        <ul>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Mantenimiento y soporte técnico</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Cambios de diseño y contenido</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Nuevas secciones y funciones</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C7BFF" stroke-width="2.8" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>Paso de página informativa a sistema</li>
-        </ul>
-        <a class="btn btn-sec" href="https://wa.me/593984775507?text=Hola%20David%2C%20necesito%20soporte%20o%20mejoras%20para%20mi%20p%C3%A1gina%20web" target="_blank" rel="noopener">Consultar</a>
+        <a class="btn btn-sec" href="https://wa.me/593984775507?text=Hola%20David%2C%20quiero%20cotizar%20un%20sistema%20de%20administraci%C3%B3n%20en%20l%C3%ADnea" target="_blank" rel="noopener">Cotizar un sistema</a>
       </article>
     </div>
-    <p class="nota-precios">Precios en dólares (USD). Emito nota de venta, sin IVA adicional.</p>
+    <p class="nota-precios">Precios en dólares (USD). La renovación anual mantiene tu página en línea, con dominio y hosting. Emito nota de venta, sin IVA adicional.</p>
   </div>
 </section>
 
@@ -476,11 +499,11 @@ p{margin:0}
       <h2 id="t-preguntas">Lo que todo negocio quiere saber</h2>
     </div>
     <div class="preguntas aparece">
-      <details><summary>¿Cuánto cuesta una página web?</summary><p>Una página informativa empieza desde $80. Un sistema de administración en línea se cotiza según lo que necesite tu negocio. En ambos casos recibes el precio por escrito antes de empezar.</p></details>
-      <details><summary>¿En cuánto tiempo está lista?</summary><p>Depende del tamaño del proyecto y de qué tan pronto tengamos tus textos y fotos. El plazo queda indicado en la cotización.</p></details>
+      <details><summary>¿Cuánto cuesta una página web?</summary><p>La página web informativa empieza desde $80 (más $15 de lanzamiento la primera vez y $35 de renovación anual). La página web con administración, desde $250 (renovación $80), y el sistema de administración en línea, desde $700 (renovación $200). Siempre recibes el precio por escrito antes de empezar.</p></details>
+      <details><summary>¿En cuánto tiempo está lista?</summary><p>Una página web informativa toma <b>1 semana de desarrollo</b> y <b>2 días para el lanzamiento</b> en la web, desde que tengo tus textos y fotos. Para los planes con administración, el plazo queda indicado en la cotización.</p></details>
       <details><summary>¿Se va a ver bien en el celular?</summary><p>Sí. Todas las páginas se diseñan primero para el celular y se prueban también en tablet y computadora.</p></details>
       <details><summary>¿Me ayuda a salir en Google?</summary><p>Incluye una optimización básica: títulos, descripciones y estructura para que Google entienda tu página y la muestre a quienes buscan lo que ofreces.</p></details>
-      <details><summary>¿Necesito comprar dominio y hosting por separado?</summary><p>La publicación en la nube con conexión segura (HTTPS) está incluida. Si quieres un dominio propio, como tunegocio.com, te ayudo a registrarlo y conectarlo.</p></details>
+      <details><summary>¿Necesito comprar dominio y hosting por separado?</summary><p>Sí, toda página necesita un dominio (por ejemplo, tunegocio.com) y un hosting donde quedar publicada. Los dos ya están incluidos en el servicio: no tienes que comprarlos ni contratarlos aparte.</p></details>
       <details><summary>¿Puedo empezar con algo sencillo y crecer después?</summary><p>Claro. Puedes empezar con una página informativa y más adelante sumar un catálogo, pedidos por WhatsApp o un sistema de inventario y ventas.</p></details>
     </div>
   </div>
@@ -493,7 +516,7 @@ p{margin:0}
         <h2 id="t-contacto">Hablemos de tu proyecto</h2>
         <p>Escríbeme por WhatsApp o por correo con una idea de lo que necesitas. Te respondo con una propuesta y un precio claro, sin compromiso.</p>
         <div class="acciones">
-          <a class="btn btn-blanco" href="https://wa.me/593984775507?text=Hola%20David%2C%20quiero%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Escribir por WhatsApp <span class="flecha" aria-hidden="true">→</span></a>
+          <a class="btn btn-wa" href="https://wa.me/593984775507?text=Hola%20David%2C%20quiero%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Escribir por WhatsApp <span class="flecha" aria-hidden="true">→</span></a>
           <a class="btn btn-borde" href="mailto:davidalext96@gmail.com?subject=Cotizaci%C3%B3n%20de%20p%C3%A1gina%20web">Enviar un correo</a>
         </div>
       </div>
@@ -513,7 +536,7 @@ p{margin:0}
 <footer class="pie">
   <div class="env">
     <a class="marca" href="#inicio" aria-label="DT Desarrollo Web, inicio"><span class="marca-dt" aria-hidden="true">DT</span><b>DT Desarrollo Web</b></a>
-    <nav aria-label="Pie"><a href="#servicios">Servicios</a><a href="#planes">Planes</a><a href="#fundador">Fundador</a><a href="#contacto">Contacto</a></nav>
+    <nav aria-label="Pie"><a href="#servicios">Servicios</a><a href="#planes">Planes</a><a href="#fundador">Fundador</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a></nav>
     <span>© 2026 DT Desarrollo Web · David Taday · Quito</span>
   </div>
 </footer>
@@ -523,14 +546,38 @@ p{margin:0}
 
 <script>
 document.documentElement.classList.add("js");
-/* menú en celular */
+/* pestañas + menú en celular: se ve una sección a la vez y la dirección (#planes…) se puede compartir */
 (function () {
   var menu = document.getElementById("menu"), boton = document.getElementById("abrir-menu");
+  var secciones = [].slice.call(document.querySelectorAll("main > section"));
+  var enlaces = [].slice.call(menu.querySelectorAll("a"));
+  var orden = enlaces.map(function (a) { return a.getAttribute("href").slice(1); });
+  function pestanaDe(x) { return x.getAttribute("data-pestana") || x.id; }
+  document.documentElement.classList.add("js-pestanas");
+  /* enlace «Siguiente: …» al final de cada pestaña */
+  orden.forEach(function (id, i) {
+    if (i === orden.length - 1) return;
+    var ultimas = secciones.filter(function (x) { return pestanaDe(x) === id; });
+    var env = ultimas.length && ultimas[ultimas.length - 1].querySelector(".env");
+    if (!env) return;
+    var p = document.createElement("p"); p.className = "siguiente";
+    p.innerHTML = '<a href="#' + orden[i + 1] + '">Siguiente: ' + enlaces[i + 1].textContent + ' <span aria-hidden="true">→</span></a>';
+    env.appendChild(p);
+  });
+  function mostrar() {
+    var id = location.hash.slice(1); if (orden.indexOf(id) < 0) id = "inicio";
+    secciones.forEach(function (x) { x.classList.toggle("activa", pestanaDe(x) === id); });
+    enlaces.forEach(function (a) { if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    document.title = (id === "inicio" ? "" : enlaces[orden.indexOf(id)].textContent + " · ") + "DT Desarrollo Web · Páginas web y sistemas en línea en Quito";
+    cerrar(); window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", mostrar);
   function cerrar() { menu.classList.remove("abierto"); boton.setAttribute("aria-expanded", "false"); }
   boton.addEventListener("click", function () { var a = !menu.classList.contains("abierto"); menu.classList.toggle("abierto", a); boton.setAttribute("aria-expanded", String(a)); });
   menu.addEventListener("click", function (e) { if (e.target.closest("a")) cerrar(); });
   document.addEventListener("click", function (e) { if (!e.target.closest(".cab")) cerrar(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") cerrar(); });
+  mostrar();
 })();
 /* aparición suave de las secciones al bajar */
 (function () {
